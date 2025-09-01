@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Caverns</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family:'Inter', sans-serif;
+    background:#1c140d;
+    color:#e0d4c3;
+    overflow-x:hidden;
+    cursor:none;
+    display:flex;
+    min-height:100vh;
+}
+
+/* Sidebar */
+aside {
+    width:220px;
+    background:#3e2c1a;
+    border-right:2px solid #a67c52;
+    display:flex;
+    flex-direction:column;
+    padding:30px 20px;
+    position:fixed;
+    height:100vh;
+    z-index:1001;
+}
+aside h1 {
+    font-family:'Press Start 2P', monospace;
+    font-size:1.5rem;
+    margin-bottom:40px;
+}
+aside nav a {
+    display:block;
+    color:#e0d4c3;
+    font-weight:600;
+    margin-bottom:15px;
+    padding:8px;
+    border-radius:4px;
+    transition: background 0.2s;
+}
+aside nav a:hover {
+    background:#a67c52;
+    color:#1c140d;
+}
+
+/* Main content */
+main {
+    margin-left:220px;
+    padding:40px;
+    flex:1;
+    background:linear-gradient(#1c140d,#2a1e14);
+}
+section {
+    position:relative;
+    background:#3e2c1a;
+    border:2px solid #a67c52;
+    border-radius:4px;
+    padding:40px 25px;
+    margin-bottom:50px;
+    overflow:hidden;
+    opacity:0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+section.visible {
+    opacity:1;
+    transform: translateY(0);
+}
+
+section::before {
+    content:'';
+    position:absolute;
+    top:0; left:0; width:100%; height:100%;
+    background: radial-gradient(circle at 20% 30%, rgba(255,180,100,0.1), transparent 70%),
+                radial-gradient(circle at 80% 60%, rgba(255,200,120,0.08), transparent 70%);
+    pointer-events:none;
+}
+
+/* Headings */
+h2 {
+    font-family:'Press Start 2P', monospace;
+    font-size:1.6rem;
+    margin-bottom:15px;
+}
+h2::after {
+    content:'';
+    display:block;
+    width:50px;
+    height:3px;
+    background:#a67c52;
+    margin-top:8px;
+}
+
+/* Team */
+.team ul {
+    list-style:none;
+    display:flex;
+    flex-wrap:wrap;
+    margin-top:10px;
+}
+.team ul li {
+    background:#2b1f16;
+    padding:8px 12px;
+    margin:5px;
+    border:1px solid #a67c52;
+    border-radius:3px;
+}
+
+/* Hero/Home */
+.hero {
+    background: linear-gradient(135deg,#2b1f16,#1c140d);
+    padding:70px 50px;
+    border:2px solid #a67c52;
+    border-radius:4px;
+    text-align:center;
+}
+.hero h1 {
+    font-family:'Press Start 2P', monospace;
+    font-size:2rem;
+    margin-bottom:15px;
+}
+.hero p { font-size:1.2rem; margin-bottom:20px; }
+.btn {
+    background:#a67c52;
+    color:#1c140d;
+    padding:12px 24px;
+    border:none;
+    border-radius:4px;
+    font-weight:600;
+    cursor:pointer;
+}
+.btn:hover { background:#e0d4c3; color:#1c140d; }
+
+/* Footer */
+footer {
+    text-align:center;
+    padding:30px;
+    background:#2b1f16;
+    border-top:2px solid #a67c52;
+    margin-top:20px;
+}
+
+/* Particles */
+#tsparticles {
+    position:fixed;
+    top:0; left:0; width:100%; height:100%; z-index:0;
+}
+
+/* Cursor */
+.cursor {
+    width:18px; height:18px;
+    border:2px solid #a67c52;
+    border-radius:50%;
+    position:fixed;
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    transition:transform 0.1s ease, background 0.2s, box-shadow 0.2s;
+    z-index:10000;
+    background:transparent;
+}
+.cursor.hover {
+    transform:translate(-50%,-50%) scale(1.4);
+    background:#a67c52;
+    box-shadow:0 0 6px #a67c52;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    aside { width:100%; height:auto; flex-direction:row; justify-content:space-around; padding:10px; position:relative; }
+    main { margin-left:0; padding:20px; }
+    section { padding:30px 20px; margin-bottom:40px; }
+    .hero { padding:50px 30px; }
+}
+</style>
+</head>
+<body>
+
+<div id="tsparticles"></div>
+<div class="cursor"></div>
+
+<aside>
+    <h1>The Caverns</h1>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About The Game</a>
+        <a href="#team">The Team</a>
+        <a href="#status">Status</a>
+        <a href="#visit-count">Visit Count</a>
+    </nav>
+</aside>
+
+<main>
+<!-- Hero/Home Section -->
+<section id="home" class="hero">
+    <h1>The Caverns</h1>
+    <p>Welcome to the official The Caverns (ROBLOX) website.</p>
+    <button class="btn" onclick="scrollToSection('about')">Learn More</button>
+</section>
+
+<section id="about">
+    <h2>About The Game</h2>
+    <p>This game was initially a test I built while I was bored. I had just sloppily put together a few rooms, like a straight room, a right curve, left curve, and ones that go up and down. I then started to test out procedural generation. Basically just taking those rooms, and plopping them together as the player walks through them. At the time, I was mainly working on an old boating game which was named Lake Hammon at the time, which I now gave ownership of that game to @15Borden, one of our QA members. After a while, I kind of grew on the procedural generation. system, becaue I liked how fast it was, and how high-quality, and just overall how good it was. I then shifted my focus over to that, and began modelling some rooms for it. Believe it or not, but the game was initially supposed to be set in a sort of abandoned office/bunker/cave sort of thing, I hadn't really thought about a story, but over time I started adding more cave elements, as I seem to be good at that. I've made three (3) horrow games in my life, ESCAPE, DreadWorks, and The Caverns. ESCAPE and DreadWorks were both cave themed, but filled with free models. The Caverns though, I made most of it myself. As I was adding more cave themed stuff, I just said screw it, lets just make it entirely cave themed. Then after many, many, many remodels, and graphics rehauls, and system rehauls, I built the first version of the game we know today. At that point, I was getting serious about it, so I gathered some friends, and some other people and built a Discord server, and thats when stuff really took off, I got QA members, and learned tons of new things like animating, and increased my already heavily developed scripting, and modelling skills and yea, I'm a small single developer who is genuinly passionate about making games. I'm honest when I say this, my main priority isn't making money. Yes, it would be nice, but I really just want to make one good quality game, and get it out there! That's my biggest goal in life is to be known in the developer community and to have people genuinly enjoy my game. I don't care about making millions, or getting stuff done quickly, its entirely the 'Quality Over Qauntity' rule, and I follow that closely. I hope you enjoy the game, and thanks for reading this.</p>
+</section>
+
+<section id="team" class="team">
+    <h2>The Team</h2>
+    <p>Here are our special team members that have worked on the game and contributed to the game:</p>
+    <ul>
+        <li>Owner/Founder: SwissDorito1192</li>
+        <li>Programmer: SwissDorito1192</li>
+        <li>Modelling: SwissDorito1192</li>
+        <li>Monster Design: SwissDorito1192</li>
+        <li>Discord Management: RealLoyalPainter</li>
+    </ul>
+    <p>We thank the people above for their continuous contribution and support for the game!</p>
+</section>
+
+<section id="status">
+    <h2>Game Status</h2>
+    <p>The game is Up-And-Running at the moment. Refresh your page as this status may change.</p>
+    <p>This game is in its Pre-Alpha stage. We plan to release the game in early 2026.</p>
+</section>
+
+<section id="visit-count">
+    <h2>Visit Count</h2>
+    <p>Number of visits: <span id="visitValue">9.6K / 10K!!!</span></p>
+</section>
+
+<footer>&copy; 2025 The Caverns</footer>
+</main>
+
+<script>
+// Smooth scroll
+function scrollToSection(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+// tsParticles
+tsParticles.load("tsparticles",{
+    fpsLimit:60,
+    particles:{
+        number:{value:35},
+        color:{value:"#e0d4c3"},
+        shape:{type:"circle"},
+        opacity:{value:0.2},
+        size:{value:{min:1,max:3}},
+        move:{enable:true,speed:0.4,direction:"none",random:true,outModes:{default:"bounce"}},
+        links:{enable:false}
+    },
+    detectRetina:true,
+    background:{color:"#1c140d"}
+});
+
+// Cursor
+const cursor=document.querySelector('.cursor');
+let mouseX=0, mouseY=0, currentX=0, currentY=0;
+document.addEventListener('mousemove', e=>{ mouseX=e.clientX; mouseY=e.clientY; });
+function animateCursor(){
+    currentX+=(mouseX-currentX)*0.15;
+    currentY+=(mouseY-currentY)*0.15;
+    cursor.style.transform=`translate(${currentX}px,${currentY}px)`;
+    requestAnimationFrame(animateCursor);
+}
+animateCursor();
+document.querySelectorAll('a, .btn').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cursor.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>cursor.classList.remove('hover'));
+});
+
+// Section fade-in animation
+const sections = document.querySelectorAll('section');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.2 });
+sections.forEach(section => observer.observe(section));
+</script>
+</body>
+</html>
