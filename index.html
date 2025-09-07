@@ -72,7 +72,6 @@ section.visible {
     opacity:1;
     transform: translateY(0);
 }
-
 section::before {
     content:'';
     position:absolute;
@@ -87,6 +86,8 @@ h2 {
     font-family:'Press Start 2P', monospace;
     font-size:1.6rem;
     margin-bottom:15px;
+    display:flex;
+    align-items:center;
 }
 h2::after {
     content:'';
@@ -95,6 +96,15 @@ h2::after {
     height:3px;
     background:#a67c52;
     margin-top:8px;
+}
+.new-badge {
+    background:#e0d4c3;
+    color:#1c140d;
+    font-family:'Press Start 2P', monospace;
+    font-size:0.7rem;
+    padding:2px 6px;
+    margin-left:10px;
+    border-radius:3px;
 }
 
 /* Team */
@@ -146,6 +156,23 @@ footer {
     margin-top:20px;
 }
 
+/* Update Log */
+#update-log ul {
+    list-style:none;
+    padding-left:0;
+    margin-top:15px;
+}
+#update-log ul li {
+    background:#2b1f16;
+    padding:10px 15px;
+    margin:6px 0;
+    border:1px solid #a67c52;
+    border-radius:4px;
+}
+#update-log ul li strong {
+    color:#a67c52;
+}
+
 /* Particles */
 #tsparticles {
     position:fixed;
@@ -192,6 +219,7 @@ footer {
         <a href="#team">The Team</a>
         <a href="#status">Status</a>
         <a href="#visit-count">Visit Count</a>
+        <a href="#update-log">Update Log <span class="new-badge">New</span></a>
     </nav>
 </aside>
 
@@ -210,7 +238,7 @@ footer {
 
 <section id="team" class="team">
     <h2>The Team</h2>
-    <p>Here are our special team members that have worked on the game and contributed to the game:</p>
+    <p>Here are our special team members that have worked on the game and contributed:</p>
     <ul>
         <li>Owner/Founder: SwissDorito1192</li>
         <li>Programmer: SwissDorito1192</li>
@@ -218,7 +246,6 @@ footer {
         <li>Monster Design: SwissDorito1192</li>
         <li>Discord Management: RealLoyalPainter</li>
     </ul>
-    <p>We thank the people above for their continuous contribution and support for the game!</p>
 </section>
 
 <section id="status">
@@ -230,6 +257,14 @@ footer {
 <section id="visit-count">
     <h2>Visit Count</h2>
     <p>Number of visits: <span id="visitValue">9.7K / 10K!!!</span></p>
+</section>
+
+<section id="update-log">
+    <h2>Update Log <span class="new-badge">New</span></h2>
+    <p>Here are the latest updates for The Caverns:</p>
+    <ul>
+        <li><strong>2025-09-07:</strong> I added a new entity called the Flutter, it's a little bit un polished, but I wanted to get it out to see what ya'll thought of it. It doesn't do anything, its just for ambience (atleast for now)</li>
+    </ul>
 </section>
 
 <footer>&copy; 2025 The Caverns</footer>
@@ -284,4 +319,3 @@ sections.forEach(section => observer.observe(section));
 </script>
 </body>
 </html>
-
